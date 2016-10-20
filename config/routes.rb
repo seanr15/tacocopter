@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root controller: :home, action: :coding_challenge
-  get "home/schema", to: "home#schema"
-  get "static_pages/cc", to: "static_pages#coding_challenge"
+  root controller: :static_pages, action: :coding_challenge
+  get "/schema", to: "static_pages#schema"
   get "static_pages/schema", to: "static_pages#schema"
 
   # Example of regular route:
