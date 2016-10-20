@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root controller: :home, action: :coding_challenge
   get "home/schema", to: "home#schema"
+  get "static_pages/cc", to: "static_pages#coding_challenge"
+  get "static_pages/schema", to: "static_pages#schema"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
