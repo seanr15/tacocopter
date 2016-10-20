@@ -11,17 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831035337) do
+ActiveRecord::Schema.define(version: 20161020214048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "answers", force: :cascade do |t|
-    t.integer  "question_id"
-    t.text     "answer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "car_washes", force: :cascade do |t|
     t.integer "store_id"
@@ -34,12 +27,6 @@ ActiveRecord::Schema.define(version: 20150831035337) do
   create_table "cities", force: :cascade do |t|
     t.string  "name",          limit: 255
     t.boolean "allows_drones"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.text     "question"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "salsas", force: :cascade do |t|
