@@ -6,4 +6,4 @@
 3. `bundle exec rake db:setup`
 4. `bundle exec rails s`
 
-You're responsible for creating any controllers, models, views, and tests to you use to satisfy the requirements described at the application's root path.
+You're responsible for creating any controllers, models, views, and tests you use to satisfy the requirements described at the application's root path.
