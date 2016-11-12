@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root controller: :static_pages, action: :coding_challenge
+  root controller: :tacos, action: :index
+  get "/coding_challenge", to: "static_pages#coding_challenge"
   get "/schema", to: "static_pages#schema"
   get "/tacos", to: "tacos#index"
+  post "/find_tacos", to: "tacos#find_tacos"
+  get "/show_tacos", to: "tacos#show_tacos"
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

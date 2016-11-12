@@ -1,0 +1,44 @@
+<div class="jumbotron">
+  <h1>Taco Results</h1>
+  <%= link_to "Search Again", tacos_path, class: "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <% if @stores_with_city.empty? %>
+        <h2>There are no stores to match those requirements</h2>
+    <% else %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>
+              Store Name
+            </th>
+            <th>
+              City Name
+            </th>
+            <th>
+              Sells Beer
+            </th>
+            <th>
+              Zagat Rating
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @stores_with_city.each do | store | %>
+              <tr>
+                <td><%=store[:store_name] %></td>
+                <td><%= store[:city_name] %></td>
+                <td><%=store[:sells_beer]%></td>
+                <td><%=store[:zagat_rating]%></td>
+              </tr>
+          <%end%>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
+
+
+

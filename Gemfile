@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'rails_12factor'
 gem 'text-table'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
+
 group :development, :test do
   gem 'pry-rails'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

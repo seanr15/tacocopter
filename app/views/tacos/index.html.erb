@@ -1,0 +1,194 @@
+<div class="jumbotron">
+  <h1>Taco Quest</h1>
+  <p>The hunt for los tacos deliciosos</p>
+</div>
+
+<%= form_tag find_tacos_path, method: :post, id: "taco_form" do %>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Select at least one of the following:</h1>
+    <hr />
+    <div class="alert alert-danger" role="alert"  style="display:none;">
+      <strong>Please select at least one item from each list!</strong>
+    </div>
+  </div>
+
+
+  <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="panel-title">Pick Your Fixins</h3>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table taco_table" id="fixin_table">
+            <thead>
+              <tr>
+                <th>Name
+                  <div class="btn btn-default btn-xs pull-right" id="taco_select_all">
+                    Select All
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @tacos.each do | taco | %>
+                  <tr>
+                    <td>
+                      <%= taco.name %>
+                      <% if taco.vegetarian? %>
+                          <i class="fa fa-leaf" aria-hidden="true"></i>
+                      <% end %>
+                      <div style="visibility:hidden"><%=check_box_tag 'taco_ids[]', taco.id%></div>
+                    </td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="panel-title">Pick Your Salsas</h3>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table taco_table" id="salsa_table">
+            <thead>
+              <tr>
+                <th>Name
+                  <div class="btn btn-default btn-xs pull-right" id="salsa_select_all">
+                    Select All
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @salsas.each do | salsa | %>
+                  <tr>
+                    <td>
+                      <%= salsa.name %>
+                      <div style="visibility:hidden"><%=check_box_tag 'salsa_ids[]', salsa.id%></div>
+                    </td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-12">
+              <h3 class="panel-title">Pick Your City</h3>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="table taco_table" id="city_table">
+            <thead>
+              <tr>
+                <th>Name
+                  <div class="btn btn-default btn-xs pull-right" id="city_select_all">
+                    Select All
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cities.each do | city | %>
+
+                  <tr>
+                    <td>
+                      <%= city.name %>
+                      <div style="visibility:hidden"><%=check_box_tag 'city_ids[]', city.id%></div>
+                    </td>
+                  </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+
+  <div class="col-md-2">
+    <%= submit_tag "Search", class: "btn btn-primary btn-lg btn-block" %>
+  <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('.taco_table tr').click(function(event) {
+      if (event.target.type !== 'checkbox') {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+  });
+
+  function colorRows(row, selected) {
+    if (selected) {
+      row.addClass("info")
+    }
+    else {
+      row.removeClass("info")
+    }
+
+  }
+
+  $("input[type='checkbox']").change(function (e) {
+    if ($(this).is(":checked")) { //If the checkbox is checked
+      colorRows($(this).closest('tr'), true);
+    } else {
+      colorRows($(this).closest('tr'), false);
+    }
+  });
+
+
+  $('#taco_select_all').click(function () {
+    $('#fixin_table tbody tr').each(function (event) {
+      if (!$(this).find("input").is(":checked")) {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+  });
+
+  $('#salsa_select_all').click(function () {
+    $('#salsa_table tbody tr').each(function (event) {
+      if (!$(this).find("input").is(":checked")) {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+  });
+
+  $('#city_select_all').click(function () {
+    $('#city_table tbody tr').each(function (event) {
+      if (!$(this).find("input").is(":checked")) {
+        $(':checkbox', this).trigger('click');
+      }
+    });
+  });
+
+  $('#taco_form').submit(function (event) {
+    if ($('#city_table input:checkbox').is(':checked') < 1
+        || $('#salsa_table input:checkbox').is(':checked') < 1
+        || $('#city_table input:checkbox').is(':checked') < 1) {
+      event.preventDefault();
+    }
+  });
+
+
+</script>
