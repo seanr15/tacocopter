@@ -15,7 +15,7 @@
   </div>
 
 
-  <div class="col-md-3">
+    <div class="col-md-3">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
@@ -187,6 +187,7 @@
         || $('#salsa_table input:checkbox').is(':checked') < 1
         || $('#city_table input:checkbox').is(':checked') < 1) {
       event.preventDefault();
+      $('.alert').show();
     }
   });
 
