@@ -1,5 +1,6 @@
 <div class="jumbotron">
   <h1>Taco Results</h1>
+  <p><i class="fa fa-beer" aria-hidden="true"></i> denotes this store sells beer</p>
   <%= link_to "Search Again", tacos_path, class: "btn btn-primary" %>
 </div>
 
@@ -18,9 +19,6 @@
               City Name
             </th>
             <th>
-              Sells Beer
-            </th>
-            <th>
               Zagat Rating
             </th>
           </tr>
@@ -28,9 +26,12 @@
         <tbody>
           <% @stores_with_city.each do | store | %>
               <tr>
-                <td><%=store[:store_name] %></td>
+                <td><%=store[:store_name] %>
+                  <% if store[:sells_beer] %>
+                    <i class="fa fa-beer" aria-hidden="true"></i>
+                  <% end %>
+                </td>
                 <td><%= store[:city_name] %></td>
-                <td><%=store[:sells_beer]%></td>
                 <td><%=store[:zagat_rating]%></td>
               </tr>
           <%end%>
