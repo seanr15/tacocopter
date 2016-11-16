@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   get "/schema", to: "static_pages#schema"
   get "/tacos", to: "tacos#index"
   post "/find_tacos", to: "tacos#find_tacos"
-  get "/show_tacos", to: "tacos#show_tacos"
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

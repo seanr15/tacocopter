@@ -1,13 +1,14 @@
 <div class="jumbotron">
   <h1>Taco Quest</h1>
-  <p>The hunt for los tacos deliciosos</p>
+  <h3>The hunt for los tacos deliciosos</h3>
+  <p><i class="fa fa-leaf" aria-hidden="true"></i> denotes vegetarian</p>
 </div>
 
 <%= form_tag find_tacos_path, method: :post, id: "taco_form" do %>
 
 <div class="row">
   <div class="col-md-12">
-    <h1>Select at least one of the following:</h1>
+    <h2>Select at least one of the following:</h2>
     <hr />
     <div class="alert alert-danger" role="alert"  style="display:none;">
       <strong>Please select at least one item from each list!</strong>
@@ -20,7 +21,7 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col-md-12">
-              <h3 class="panel-title">Pick Your Fixins</h3>
+              <h3 class="panel-title">Pick Your Fillings</h3>
             </div>
           </div>
         </div>
@@ -37,7 +38,7 @@
             </thead>
             <tbody>
               <% @tacos.each do | taco | %>
-                  <tr>
+                  <tr class="fixin_row">
                     <td>
                       <%= taco.name %>
                       <% if taco.vegetarian? %>
@@ -183,7 +184,7 @@
   });
 
   $('#taco_form').submit(function (event) {
-    if ($('#city_table input:checkbox').is(':checked') < 1
+    if ($('#fixin_table input:checkbox').is(':checked') < 1
         || $('#salsa_table input:checkbox').is(':checked') < 1
         || $('#city_table input:checkbox').is(':checked') < 1) {
       event.preventDefault();
