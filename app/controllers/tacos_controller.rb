@@ -10,6 +10,10 @@ class TacosController < ApplicationController
     salsas = params["salsa_ids"]
     cities = params["city_ids"]
 
+    if !tacos || !salsas || !cities
+      redirect_to(action: 'index') and return
+    end
+
     stores = Store.joins(:cities)
                  .where(cities: cities)
                  .joins(:stores_tacos)
